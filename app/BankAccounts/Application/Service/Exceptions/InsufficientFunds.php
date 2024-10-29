@@ -7,10 +7,10 @@ namespace App\BankAccounts\Application\Service\Exceptions;
 use App\BankAccounts\SharedContext\OperationType;
 use DomainException;
 
-class IncompatibleCurrencyType extends DomainException
+class InsufficientFunds extends DomainException
 {
     public static function create(OperationType $operationType): self
     {
-        return new self('Incompatible currency type during ' . $operationType->type());
+        return new self('Insufficient funds for ' . $operationType->type());
     }
 }

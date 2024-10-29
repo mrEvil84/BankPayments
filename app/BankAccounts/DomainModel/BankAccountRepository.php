@@ -16,4 +16,6 @@ interface BankAccountRepository
     public function getDebitOperationsCountAtDate(DateTime $date): int;
 
     public function getBankAccountOperations(BankAccount $account): BankAccountOperationCollection;
+
+    public function getOperationsCountByDate(BankAccount $account, DateTime $date): int;
 }

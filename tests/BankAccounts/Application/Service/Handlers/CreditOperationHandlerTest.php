@@ -2,53 +2,29 @@
 
 declare(strict_types=1);
 
-namespace Tests\BankAccounts\Application\Service;
+namespace Tests\BankAccounts\Application\Service\Handlers;
 
 use App\BankAccounts\Application\Command\Credit;
-use App\BankAccounts\Application\Service\BankAccountService;
 use App\BankAccounts\Application\Service\Exceptions\IncompatibleCurrencyType;
 use App\BankAccounts\Application\Service\Exceptions\InvalidOperationAmount;
 use App\BankAccounts\Application\Service\Exceptions\InvalidOperationType;
-use App\BankAccounts\DomainModel\BalanceCalculator;
-use App\BankAccounts\DomainModel\BankAccountRepository;
-use App\BankAccounts\DomainModel\OperationCostCalculator;
+use App\BankAccounts\Application\Service\Handlers\CreditOperationHandler;
 use App\BankAccounts\Entity\BankAccount;
 use App\BankAccounts\Entity\BankAccountOperation;
-use App\SharedContext\Currency;
-use App\SharedContext\IdProvider;
-use App\SharedContext\OperationType;
+use App\BankAccounts\SharedContext\Currency;
+use App\BankAccounts\SharedContext\OperationType;
 use DateTime;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Exception;
-use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
-class BankAccountServiceTest extends TestCase
+class CreditOperationHandlerTest extends HandlerBaseTestCase
 {
-    private BankAccountRepository|MockObject $repository;
-    private IdProvider|MockObject $idProvider;
-    private OperationCostCalculator|MockObject $operationCostCalculator;
-    private BalanceCalculator|MockObject $balanceCalculator;
-
-
-    /**
-     * @throws Exception
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->repository = $this->createMock(BankAccountRepository::class);
-        $this->idProvider = $this->createMock(IdProvider::class);
-        $this->operationCostCalculator = $this->createMock(OperationCostCalculator::class);
-        $this->balanceCalculator = $this->createMock(BalanceCalculator::class);
-    }
-
     /**
      * @throws Exception
      */
     #[Test]
-    public function shouldCredit(): void
+    public function shouldCreditHandle(): void
     {
         $operationDate = new DateTime();
         $testId = 'abcd';
@@ -73,29 +49,27 @@ class BankAccountServiceTest extends TestCase
         );
         $this->repository->expects($this->once())->method('addBankAccountOperation')->with($expectedEntity);
         $this->idProvider->expects($this->once())->method('getId')->willReturn($testId);
-        $this->operationCostCalculator->expects($this->once())->method('getCreditOperationCost')->willReturn(0.00);
+        $this->costCalculator->expects($this->once())->method('getCreditOperationCost')->willReturn(0.00);
 
-        $sut = new BankAccountService(
+        $sut = new CreditOperationHandler(
             $this->repository,
             $this->idProvider,
-            $this->operationCostCalculator,
-            $this->balanceCalculator
+            $this->costCalculator,
         );
-        $sut->credit($command);
+        $sut->handle($command);
     }
 
     #[DataProvider('getInvalidCurrencyTypedData')]
     #[Test]
     public function shouldThrowExceptionWhenCreditCurrencyIncompatible(Credit $command): void
     {
-        $sut = new BankAccountService(
+        $sut = new CreditOperationHandler(
             $this->repository,
             $this->idProvider,
-            $this->operationCostCalculator,
-            $this->balanceCalculator
+            $this->costCalculator,
         );
         $this->expectException(IncompatibleCurrencyType::class);
-        $sut->credit($command);
+        $sut->handle($command);
     }
 
     #[Test]
@@ -109,28 +83,26 @@ class BankAccountServiceTest extends TestCase
             new DateTime()
         );
 
-        $sut = new BankAccountService(
+        $sut = new CreditOperationHandler(
             $this->repository,
             $this->idProvider,
-            $this->operationCostCalculator,
-            $this->balanceCalculator
+            $this->costCalculator,
         );
         $this->expectException(InvalidOperationType::class);
-        $sut->credit($command);
+        $sut->handle($command);
     }
 
     #[DataProvider('getInvalidCreditAmountData')]
     #[Test]
     public function shouldThrowExceptionWhenInvalidCreditOperationAmount(Credit $command): void
     {
-        $sut = new BankAccountService(
+        $sut = new CreditOperationHandler(
             $this->repository,
             $this->idProvider,
-            $this->operationCostCalculator,
-            $this->balanceCalculator
+            $this->costCalculator,
         );
         $this->expectException(InvalidOperationAmount::class);
-        $sut->credit($command);
+        $sut->handle($command);
     }
 
     public static function getInvalidCurrencyTypedData(): array

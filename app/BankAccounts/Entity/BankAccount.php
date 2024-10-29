@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\BankAccounts\Entity;
 
-use App\SharedContext\Currency;
+use App\BankAccounts\SharedContext\Currency;
 
 readonly class BankAccount
 {

@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace App\BankAccounts\Infrastructure;
 
 use App\BankAccounts\DomainModel\BankAccountRepository;
+use App\BankAccounts\Entity\BankAccount;
 use App\BankAccounts\Entity\BankAccountOperation;
+use App\BankAccounts\Entity\BankAccountOperationCollection;
+use DateTime;
 
 class BankAccountStorage implements BankAccountRepository
 {
@@ -22,5 +25,21 @@ class BankAccountStorage implements BankAccountRepository
 
         ]);
         // store json in db or send to api or create event or sent to queue system
+    }
+
+
+    public function getDebitOperationsCountAtDate(DateTime $date): int
+    {
+        return 1;
+    }
+
+    public function getBankAccountOperations(BankAccount $account): BankAccountOperationCollection
+    {
+        return new BankAccountOperationCollection();
+    }
+
+    public function getOperationsCountByDate(BankAccount $account, DateTime $date): int
+    {
+        return 1;
     }
 }

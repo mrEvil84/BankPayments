@@ -5,18 +5,18 @@ declare(strict_types=1);
 namespace App\BankAccounts\Application\Command;
 
 use App\BankAccounts\Entity\BankAccount;
-use App\SharedContext\Currency;
-use App\SharedContext\OperationType;
+use App\BankAccounts\SharedContext\Currency;
+use App\BankAccounts\SharedContext\OperationType;
 use DateTime;
 
 abstract readonly class AccountOperation
 {
     public function __construct(
         private OperationType $operationType,
-        private BankAccount $account,
-        private float $amount,
-        private Currency $currency,
-        private DateTime $operationDate,
+        private BankAccount   $bankAccount,
+        private float         $amount,
+        private Currency      $currency,
+        private DateTime      $operationDate,
     ) {
     }
 
@@ -25,9 +25,9 @@ abstract readonly class AccountOperation
         return $this->operationType;
     }
 
-    public function getAccount(): BankAccount
+    public function getBankAccount(): BankAccount
     {
-        return $this->account;
+        return $this->bankAccount;
     }
 
     public function getAmount(): float
