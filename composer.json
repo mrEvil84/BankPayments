@@ -1,0 +1,40 @@
+{
+    "name": "piotr/bank-payments",
+    "type": "project",
+    "description": "A code example of bank app",
+    "keywords": ["code", "example"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0.1",
+        "friendsofphp/php-cs-fixer": "^3.64",
+        "phpmd/phpmd": "^2.15",
+        "phpstan/phpstan": "^1.12",
+        "squizlabs/php_codesniffer": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+    },
+    "extra": {
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
