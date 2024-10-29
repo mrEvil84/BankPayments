@@ -12,8 +12,8 @@ use App\BankAccounts\DomainModel\BalanceCalculator;
 use App\BankAccounts\DomainModel\BankAccountRepository;
 use App\BankAccounts\DomainModel\OperationCostCalculator;
 use App\BankAccounts\Entity\BankAccountOperation;
-use App\BankAccounts\SharedContext\IdProvider;
-use App\BankAccounts\SharedContext\OperationType;
+use App\SharedContext\IdProvider;
+use App\SharedContext\OperationType;
 
 class DebitOperationsHandler extends OperationsHandler
 {

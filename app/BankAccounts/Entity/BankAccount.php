@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\BankAccounts\Entity;
 
-use App\BankAccounts\SharedContext\Currency;
+use App\SharedContext\Currency;
 
 readonly class BankAccount
 {
     public function __construct(
         private string   $bankAccountId,
-        private Currency $currency
+        private Currency $currency,
+        private ?float   $balance = null,
     ) {
     }
 
@@ -22,5 +23,10 @@ readonly class BankAccount
     public function getCurrency(): Currency
     {
         return $this->currency;
+    }
+
+    public function getBalance(): ?float
+    {
+        return $this->balance;
     }
 }

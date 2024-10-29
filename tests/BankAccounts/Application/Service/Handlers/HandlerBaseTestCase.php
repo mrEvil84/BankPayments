@@ -7,7 +7,7 @@ namespace Tests\BankAccounts\Application\Service\Handlers;
 use App\BankAccounts\DomainModel\BalanceCalculator;
 use App\BankAccounts\DomainModel\BankAccountRepository;
 use App\BankAccounts\DomainModel\OperationCostCalculator;
-use App\BankAccounts\SharedContext\IdProvider;
+use App\SharedContext\IdProvider;
 use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

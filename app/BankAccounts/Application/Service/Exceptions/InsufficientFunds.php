@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\BankAccounts\Application\Service\Exceptions;
 
-use App\BankAccounts\SharedContext\OperationType;
+use App\SharedContext\OperationType;
 use DomainException;
 
 class InsufficientFunds extends DomainException

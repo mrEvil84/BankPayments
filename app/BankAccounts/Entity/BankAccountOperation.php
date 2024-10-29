@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\BankAccounts\Entity;
 
-use App\BankAccounts\SharedContext\Currency;
-use App\BankAccounts\SharedContext\OperationType;
+use App\SharedContext\Currency;
+use App\SharedContext\OperationType;
 use DateTime;
 
 readonly class BankAccountOperation
