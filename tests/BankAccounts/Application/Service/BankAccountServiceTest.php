@@ -88,7 +88,12 @@ class BankAccountServiceTest extends TestCase
     #[Test]
     public function shouldThrowExceptionWhenCreditCurrencyIncompatible(Credit $command): void
     {
-        $sut = new BankAccountService($this->repository, $this->idProvider, $this->operationCostCalculator);
+        $sut = new BankAccountService(
+            $this->repository,
+            $this->idProvider,
+            $this->operationCostCalculator,
+            $this->balanceCalculator
+        );
         $this->expectException(IncompatibleCurrencyType::class);
         $sut->credit($command);
     }
@@ -104,7 +109,12 @@ class BankAccountServiceTest extends TestCase
             new DateTime()
         );
 
-        $sut = new BankAccountService($this->repository, $this->idProvider, $this->operationCostCalculator);
+        $sut = new BankAccountService(
+            $this->repository,
+            $this->idProvider,
+            $this->operationCostCalculator,
+            $this->balanceCalculator
+        );
         $this->expectException(InvalidOperationType::class);
         $sut->credit($command);
     }
@@ -113,7 +123,12 @@ class BankAccountServiceTest extends TestCase
     #[Test]
     public function shouldThrowExceptionWhenInvalidCreditOperationAmount(Credit $command): void
     {
-        $sut = new BankAccountService($this->repository, $this->idProvider, $this->operationCostCalculator);
+        $sut = new BankAccountService(
+            $this->repository,
+            $this->idProvider,
+            $this->operationCostCalculator,
+            $this->balanceCalculator
+        );
         $this->expectException(InvalidOperationAmount::class);
         $sut->credit($command);
     }
