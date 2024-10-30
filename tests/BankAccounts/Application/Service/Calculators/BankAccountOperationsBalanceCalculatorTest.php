@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\BankAccounts\Application\Service;
+namespace Tests\BankAccounts\Application\Service\Calculators;
 
 use App\BankAccounts\Application\Service\Calculators\BankAccountOperationsBalanceCalculator;
 use App\BankAccounts\Entity\BankAccountOperation;
