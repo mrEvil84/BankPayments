@@ -7,7 +7,7 @@ namespace App\BankAccounts\Application\Service\Calculators;
 use App\BankAccounts\DomainModel\BalanceCalculator;
 use App\BankAccounts\Entity\BankAccountOperation;
 use App\BankAccounts\Entity\BankAccountOperationCollection;
-use App\SharedContext\OperationType;
+use App\BankAccounts\SharedContext\OperationType;
 
 class BankAccountOperationsBalanceCalculator implements BalanceCalculator
 {

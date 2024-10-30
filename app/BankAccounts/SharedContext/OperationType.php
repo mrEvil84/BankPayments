@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\SharedContext;
+namespace App\BankAccounts\SharedContext;
 
 enum OperationType
 {

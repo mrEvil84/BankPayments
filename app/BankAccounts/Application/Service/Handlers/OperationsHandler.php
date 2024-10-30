@@ -8,7 +8,7 @@ use App\BankAccounts\Application\Command\AccountOperation;
 use App\BankAccounts\Application\Service\Exceptions\IncompatibleCurrencyType;
 use App\BankAccounts\Application\Service\Exceptions\InvalidOperationAmount;
 use App\BankAccounts\Application\Service\Exceptions\InvalidOperationType;
-use App\SharedContext\OperationType;
+use App\BankAccounts\SharedContext\OperationType;
 
 abstract class OperationsHandler
 {

@@ -11,8 +11,8 @@ use App\BankAccounts\Application\Service\Exceptions\InvalidOperationType;
 use App\BankAccounts\DomainModel\BankAccountRepository;
 use App\BankAccounts\DomainModel\OperationCostCalculator;
 use App\BankAccounts\Entity\BankAccountOperation;
-use App\SharedContext\IdProvider;
-use App\SharedContext\OperationType;
+use App\BankAccounts\SharedContext\IdProvider;
+use App\BankAccounts\SharedContext\OperationType;
 
 class CreditOperationHandler extends OperationsHandler
 {
