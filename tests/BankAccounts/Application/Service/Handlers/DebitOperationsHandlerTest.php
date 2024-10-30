@@ -7,7 +7,7 @@ namespace Tests\BankAccounts\Application\Service\Handlers;
 use App\BankAccounts\Application\Command\Debit;
 use App\BankAccounts\Application\Service\Exceptions\InsufficientFunds;
 use App\BankAccounts\Application\Service\Exceptions\OperationsLimit;
-use App\BankAccounts\Application\Service\Handlers\DebitOperationsHandler;
+use App\BankAccounts\Application\Service\Handlers\DebitOperationHandler;
 use App\BankAccounts\Entity\BankAccount;
 use App\BankAccounts\Entity\BankAccountOperation;
 use App\BankAccounts\Entity\BankAccountOperationCollection;
@@ -37,7 +37,7 @@ class DebitOperationsHandlerTest extends HandlerBaseTestCase
         $this->costCalculator->expects($this->exactly(3))->method('getDebitOperationCost')->willReturn($operationCost);
         $this->balanceCalculator->expects($this->once())->method('getBalance')->with($operations)->willReturn($balance);
 
-        $sut = new DebitOperationsHandler(
+        $sut = new DebitOperationHandler(
             $this->repository,
             $this->idProvider,
             $this->costCalculator,
@@ -59,7 +59,7 @@ class DebitOperationsHandlerTest extends HandlerBaseTestCase
         $this->costCalculator->expects($this->once())->method('getDebitOperationCost')->willReturn($operationCost);
         $this->balanceCalculator->expects($this->once())->method('getBalance')->with($operations)->willReturn($balance);
 
-        $sut = new DebitOperationsHandler(
+        $sut = new DebitOperationHandler(
             $this->repository,
             $this->idProvider,
             $this->costCalculator,
@@ -85,7 +85,7 @@ class DebitOperationsHandlerTest extends HandlerBaseTestCase
         $this->costCalculator->expects($this->once())->method('getDebitOperationCost')->willReturn($operationCost);
         $this->balanceCalculator->expects($this->once())->method('getBalance')->with($operations)->willReturn($balance);
 
-        $sut = new DebitOperationsHandler(
+        $sut = new DebitOperationHandler(
             $this->repository,
             $this->idProvider,
             $this->costCalculator,

@@ -13,10 +13,10 @@ use App\BankAccounts\Entity\BankAccount;
 use App\BankAccounts\Entity\BankAccountOperation;
 use App\SharedContext\Currency;
 use App\SharedContext\OperationType;
-use DateTime;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Exception;
+use DateTime;
 
 class CreditOperationHandlerTest extends HandlerBaseTestCase
 {

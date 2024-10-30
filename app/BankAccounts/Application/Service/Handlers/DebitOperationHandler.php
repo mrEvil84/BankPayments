@@ -15,7 +15,7 @@ use App\BankAccounts\Entity\BankAccountOperation;
 use App\SharedContext\IdProvider;
 use App\SharedContext\OperationType;
 
-class DebitOperationsHandler extends OperationsHandler
+class DebitOperationHandler extends OperationsHandler
 {
     public const int MAX_OPERATIONS_COUNT_PER_DAY = 3;
 

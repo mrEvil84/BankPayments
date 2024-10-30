@@ -24,7 +24,7 @@ class BankAccountOperationsBalanceCalculatorTest extends TestCase
 
     #[DataProvider('getOperations')]
     #[Test]
-    public function shouldGetBallance(BankAccountOperationCollection $operations, float $expectedBalance): void
+    public function shouldGetBalance(BankAccountOperationCollection $operations, float $expectedBalance): void
     {
         $actualBalance = $this->calculator->getBalance($operations);
         $this->assertSame($expectedBalance, $actualBalance);
@@ -54,8 +54,8 @@ class BankAccountOperationsBalanceCalculatorTest extends TestCase
             new \DateTime()
         ));
 
-        $collectionCreditDebit  = new BankAccountOperationCollection();
-        $collectionCreditDebit->add(new BankAccountOperation(
+        $creditDebit  = new BankAccountOperationCollection();
+        $creditDebit->add(new BankAccountOperation(
             'abcd-1',
             OperationType::CREDIT,
             Currency::EUR,
@@ -65,7 +65,7 @@ class BankAccountOperationsBalanceCalculatorTest extends TestCase
             1000.00,
             new \DateTime()
         ));
-        $collectionCreditDebit->add(new BankAccountOperation(
+        $creditDebit->add(new BankAccountOperation(
             'abcd-2',
             OperationType::CREDIT,
             Currency::EUR,
@@ -75,7 +75,7 @@ class BankAccountOperationsBalanceCalculatorTest extends TestCase
             1000.00,
             new \DateTime()
         ));
-        $collectionCreditDebit->add(new BankAccountOperation(
+        $creditDebit->add(new BankAccountOperation(
             'abcd-3',
             OperationType::DEBIT,
             Currency::EUR,
@@ -110,7 +110,7 @@ class BankAccountOperationsBalanceCalculatorTest extends TestCase
 
         return [
             [$collectionCredit, 2000.00],
-            [$collectionCreditDebit, -100.00],
+            [$creditDebit, -100.00],
             [$collectionDebit, -4200.00],
         ];
     }

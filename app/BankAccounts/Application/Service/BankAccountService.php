@@ -10,13 +10,13 @@ use App\BankAccounts\Application\Service\Exceptions\IncompatibleCurrencyType;
 use App\BankAccounts\Application\Service\Exceptions\InvalidOperationAmount;
 use App\BankAccounts\Application\Service\Exceptions\InvalidOperationType;
 use App\BankAccounts\Application\Service\Handlers\CreditOperationHandler;
-use App\BankAccounts\Application\Service\Handlers\DebitOperationsHandler;
+use App\BankAccounts\Application\Service\Handlers\DebitOperationHandler;
 
 readonly class BankAccountService
 {
     public function __construct(
         private CreditOperationHandler $creditHandler,
-        private DebitOperationsHandler $debitHandler,
+        private DebitOperationHandler  $debitHandler,
     ) {
     }
 
