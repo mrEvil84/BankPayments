@@ -47,6 +47,7 @@ class CreditOperationHandlerTest extends HandlerBaseTestCase
             1000.00,
             $operationDate
         );
+
         $this->repository->expects($this->once())->method('addBankAccountOperation')->with($expectedEntity);
         $this->idProvider->expects($this->once())->method('getId')->willReturn($testId);
         $this->costCalculator->expects($this->once())->method('getCreditOperationCost')->willReturn(0.00);
@@ -68,6 +69,7 @@ class CreditOperationHandlerTest extends HandlerBaseTestCase
             $this->idProvider,
             $this->costCalculator,
         );
+
         $this->expectException(IncompatibleCurrencyType::class);
         $sut->handle($command);
     }
@@ -88,6 +90,7 @@ class CreditOperationHandlerTest extends HandlerBaseTestCase
             $this->idProvider,
             $this->costCalculator,
         );
+
         $this->expectException(InvalidOperationType::class);
         $sut->handle($command);
     }
@@ -101,6 +104,7 @@ class CreditOperationHandlerTest extends HandlerBaseTestCase
             $this->idProvider,
             $this->costCalculator,
         );
+
         $this->expectException(InvalidOperationAmount::class);
         $sut->handle($command);
     }
@@ -109,6 +113,7 @@ class CreditOperationHandlerTest extends HandlerBaseTestCase
     {
         $testId = 'id-abcd';
         $operationDate = new DateTime();
+
         return [
             [
                 new Credit(
@@ -135,6 +140,7 @@ class CreditOperationHandlerTest extends HandlerBaseTestCase
     {
         $testId = 'id-abcd';
         $operationDate = new DateTime();
+
         return [
             [
                 new Credit(
